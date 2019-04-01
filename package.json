@@ -1,0 +1,57 @@
+{
+  "name": "cs3754-api-stage-1",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --runInBand",
+    "checklintrules": "npx eslint *.js api/*.js db/*.js",
+    "checkformatting": "npx prettier --check *.js api/*.js db/*.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jest": "^24.0.11",
+    "bcrypt": "^3.0.4",
+    "csv-parser": "^2.1.0",
+    "csv-write-stream": "^2.0.0",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "morgan": "^1.9.1",
+    "mysql": "^2.16.0",
+    "nconf": "^0.10.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "supertest": "^3.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.13.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "jest": "^24.3.0",
+    "prettier": "^1.16.4"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "es6": true,
+      "jest": true
+    },
+    "parserOptions": {
+      "ecmaVersion": "2019"
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:prettier/recommended"
+    ],
+    "rules": {
+      "no-console": "off",
+      "no-await-in-loop": "warn"
+    }
+  },
+  "prettier": {
+    "singleQuote": true
+  }
+}

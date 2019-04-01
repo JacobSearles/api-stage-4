@@ -1,0 +1,12 @@
+{
+    "dbinfo" : {
+        "host": "localhost",
+        "user": "your mysql user",
+        "password": "your mysql password",
+        "database": "name of your test database",
+        "multipleStatements": true
+    },
+    "jwtsecret": "here goes the really secret sauce",
+    "jwtexpirationtime": "24h",
+    "bcryptsaltrounds": 12
+}
