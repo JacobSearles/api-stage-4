@@ -15,7 +15,7 @@ database in the future (perhaps a NoSQL instead of a SQL database).
 Towards that end, I have provided units tests in db/db.test.js that will allow
 you to test your DB layer separately (that is, before you write your API endpoints).  
 You should work on these tests first.
-(You can run them with `npx db/db.test.js`)
+(You can run them with `npx jest db/db.test.js`)
 Read the tests to learn the semantics of the functions you must implement.
 
 Although the DB layer as designed is not fully abstracted because it exposes some 
