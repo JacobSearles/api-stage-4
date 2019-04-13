@@ -1,9 +1,9 @@
 {
     "dbinfo" : {
         "host": "localhost",
-        "user": "your mysql user",
-        "password": "your mysql password",
-        "database": "name of your test database",
+        "user": "jacob98",
+        "password": "Ja13keRI$",
+        "database": "db1",
         "multipleStatements": true
     },
     "jwtsecret": "here goes the really secret sauce",

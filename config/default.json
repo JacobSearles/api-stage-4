@@ -1,9 +1,9 @@
 {
     "dbinfo" : {
         "host": "localhost",
-        "user": "your mysql user",
-        "password": "your mysql password",
-        "database": "name of your production database"
+        "user": "jacob98",
+        "password": "Ja13keRI$",
+        "database": "db1"
     },
     "jwtsecret": "here goes the really secret sauce",
     "jwtexpirationtime": "24h",
