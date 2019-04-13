@@ -115,9 +115,7 @@ userrouter.route('/:id').delete(requireLogin, async (req, res) => {
       return res.status(404).json({ message: 'user does not exist' });
     }
     if (req.user.admin || req.user.id == Number(req.params.id)) {
-      console.log('reached before\n');
       await deleteUserById(Number(req.params.id));
-      console.log('reached after\n');
       return res.status(200).json({ message: 'user deleted' });
     } else {
       return res.status(403).json({ message: 'not admin or user' });
@@ -151,9 +149,7 @@ userrouter.get('/', requireAdmin, async (req, res) => {
 
     if (req.query.page) {
       dbusers = await getUsers(req.query.page);
-      console.log('size thing: ' + nconf.get('page_size'));
       has_more = (Number(req.query.page) + 1) * 10 < (await userCount());
-      console.log('reached list\n');
     } else {
       //has_more = false;
       dbusers = await getUsers();
