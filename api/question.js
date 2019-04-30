@@ -9,7 +9,8 @@ const {
   getUserVotesForQuestion,
   getVotesForQuestion,
   updateQuestion,
-  deleteQuestion
+  deleteQuestion,
+  listQuestions
 } = require('../db/queries');
 
 const userrouter = express.Router();
@@ -37,6 +38,20 @@ userrouter.post('/', requireAdmin, async (req, res) => {
     return res.status(200).json({ id, message: 'question created' });
   } catch (err) {
     return res.status(500).json({ message: 'error creating question' });
+  }
+});
+
+userrouter.get('/', requireLogin, async (req, res) => {
+  try {
+    if (req.query.page) {
+      let list = await listQuestions(req.query.page, 10);
+      return res.status(200).json({ list });
+    } else {
+      let list = await listQuestions(0, 10);
+      return res.status(200).json({ list });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: 'error listing questions' });
   }
 });
 

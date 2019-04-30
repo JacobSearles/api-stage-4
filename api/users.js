@@ -22,6 +22,7 @@ const userrouter = express.Router();
 
 //add user
 userrouter.route('/').post(async (req, res) => {
+  let r = 'first';
   try {
     if (
       typeof req.body.username !== 'undefined' &&
@@ -30,6 +31,7 @@ userrouter.route('/').post(async (req, res) => {
       typeof req.body.lastname !== 'undefined' &&
       req.body.password !== ''
     ) {
+      r = 'second';
       if ((await getUserByName(req.body.username)).length == 0) {
         let user = {
           username: req.body.username,
@@ -56,10 +58,10 @@ userrouter.route('/').post(async (req, res) => {
           .json({ message: 'cannot create user with same name' });
       }
     } else {
-      return res.status(400).json({ message: 'missing field' });
+      return res.status(400).json({ message: req.body.username + req.body.password + req.body.firstname + req.body.lastname });
     }
   } catch (err) {
-    return res.status(400).json({ message: 'didnt work' });
+    return res.status(400).json({ message: r });
   }
 });
 
