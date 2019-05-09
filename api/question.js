@@ -17,13 +17,8 @@ const userrouter = express.Router();
 
 //create a new question
 userrouter.post('/', requireAdmin, async (req, res) => {
-  if (
-    !req.body.question ||
-    !req.body.description ||
-    !req.body.type ||
-    !req.body.choices
-  ) {
-    return res.status(400).json({ message: 'missing field' });
+  if (!req.body.question || !req.body.description || !req.body.choices) {
+    return res.status(400).json({ message: 'missing field(s)' });
   }
   try {
     let question = {
@@ -118,12 +113,13 @@ userrouter.get('/:id', requireLogin, async (req, res) => {
 
 //vote on a question
 userrouter.post('/:id/vote', requireLogin, async (req, res) => {
+  console.log('log: ' + req.body.choice);
   try {
     if (req.body.choice) {
       await voteForQuestion(req.user.id, req.params.id, req.body.choice);
       return res.status(200).json({ message: 'voted' });
     } else {
-      return res.status(400).json({ message: 'no choice' });
+      return res.status(401).json({ message: 'no choice' });
     }
   } catch (err) {
     return res.status(500).json(err);
@@ -155,6 +151,7 @@ userrouter.get('/:id/vote', requireLogin, async (req, res) => {
 //deletes a question
 userrouter.delete('/:id', requireAdmin, async (req, res) => {
   try {
+    console.log('reached');
     let q = await getQuestion(Number(req.params.id));
 
     if (!q) {

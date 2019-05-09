@@ -107,7 +107,7 @@ const requireAuthenticationWithPredicate = pred => (req, res, next) => {
     user
   ) {
     if (err) {
-      return res.status(400).json({ message: 'error' });
+      return res.status(400).json({ message: 'error here' });
     } else if (user) {
       if (pred.test(user.data)) {
         req.user = user.data;

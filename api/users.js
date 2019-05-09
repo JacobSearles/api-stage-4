@@ -145,6 +145,19 @@ userrouter.route('/:id').delete(requireLogin, async (req, res) => {
 //list users
 userrouter.get('/', requireAdmin, async (req, res) => {
   try {
+    if (req.query.page) {
+      let list = await listUsers(req.query.page, 10);
+      return res.status(200).json({ list });
+    } else {
+      let list = await listUsers(0, 10);
+      return res.status(200).json({ list });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: 'error listing questions' });
+  }
+});
+/*userrouter.get('/', requireAdmin, async (req, res) => {
+  try {
     let dbusers = [];
     let users = [];
     let has_more = false;
@@ -167,16 +180,10 @@ userrouter.get('/', requireAdmin, async (req, res) => {
       });
     }
     return res.status(200).json({ users, has_more });
-    /*let userList = await userdb;
-    let users = [];
-    for (const { name, id, fullname, admin } of userList.byName.values()) {
-      users.push({ name, id, fullname, admin });
-    }
-    res.status(200).json({ users: users });*/
   } catch (err) {
     return res.status(500).json(err);
   }
-});
+});*/
 
 class user {
   constructor() {}
