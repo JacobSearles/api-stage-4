@@ -116,7 +116,7 @@ userrouter.post('/:id/vote', requireLogin, async (req, res) => {
   console.log('log: ' + req.body.choice);
   try {
     if (req.body.choice) {
-      await voteForQuestion(req.user.id, req.params.id, req.body.choice);
+      await voteForQuestion(req.user.id, req.params.id, req.body.choice, true);
       return res.status(200).json({ message: 'voted' });
     } else {
       return res.status(401).json({ message: 'no choice' });
